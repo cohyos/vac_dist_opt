@@ -1,0 +1,12 @@
+basic_reproduction_number: 2.1
+country_immunity_threshold: 0.5
+gdp_immunity_threshold: 0.7
+herd_immunity_threshold: 0.7
+initial_infected_per_country: 100
+lockdown_entry_threshold: 0.012
+lockdown_exit_threshold: 0.008
+lockdown_threshold: 0.012
+mortality_rate: 0.02
+recovery_rate: 0.07142857142857142
+simulation_days: 800
+vaccine_effectiveness: 0.95
