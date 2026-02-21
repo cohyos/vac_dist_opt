@@ -1,0 +1,549 @@
+Country,start_day,end_day,npi_level,wave,notes
+# =============================================================================
+# Real-world COVID-19 NPI / Lockdown Data
+# Day 0 = 2019-12-31  |  Day 71 = 2020-03-11 (WHO pandemic declaration)
+# NPI Level: 0=None  1=Mild (masks+distancing)  2=Moderate (school/gathering restrictions)  3=Strict (stay-at-home/full lockdown)
+# Sources: Oxford COVID-19 Government Response Tracker (OxCGRT), WHO, national govt announcements
+# =============================================================================
+#
+# --- CHINA ---
+China,20,82,3,1,Wuhan lockdown (Jan 20) expanding to national measures; most of China locked by Jan 23
+China,83,180,2,1,Gradual national reopening; some provinces still MODERATE
+China,181,260,1,1,Wuhan reopen Apr 8; low-level ongoing measures
+China,261,310,2,2,Xinjiang lockdown Aug 2020; spot outbreaks
+China,311,366,1,2,Targeted measures post-summer
+China,367,461,2,3,Winter wave; Shijiazhuang lockdown Jan 2021; Hebei province
+China,462,548,1,3,Spring 2021 - spot lockdowns (Yunnan, Guangdong)
+China,549,700,2,4,Delta outbreaks; Nanjing lockdown Jul 2021; strict local lockdowns
+#
+# --- INDIA ---
+India,85,152,3,1,National Lockdown (Mar 25 - May 31) — one of world's strictest
+India,153,213,2,1,Unlock 1.0 & 2.0 (Jun-Jul 2020); religious sites, malls reopen
+India,214,305,1,1,Unlock 3.0-5.0 (Aug-Oct 2020); sports, schools partial
+India,306,366,2,2,Winter rise; Delhi night curfew Nov 2020; localised restrictions
+India,367,430,2,3,Vaccine rollout slow; states-level restrictions
+India,461,520,3,4,Delta wave state lockdowns (Apr-May 2021): Maharashtra, Delhi, Karnataka
+India,521,600,2,4,Gradual unlock Jun-Aug 2021
+India,601,700,1,4,Low national measures after Delta peak
+#
+# --- UNITED STATES ---
+United States,73,122,2,1,National Emergency Mar 13; state stay-at-home orders vary (most MODERATE)
+United States,80,122,3,1,Strictest states: NY, NJ, CA, IL shelter-in-place (aggregated to 3 for model)
+United States,123,183,1,1,Reopening phases May-Jun 2020; Sun Belt states fully open by June
+United States,184,245,1,2,Summer reopening but cases rising; some states reverse
+United States,246,310,2,2,Fall surge; renewed restrictions in CA, NY, IL, midwest
+United States,311,366,2,2,Holiday surge; strict state-level measures; California lockdown Dec
+United States,367,430,2,3,Biden inauguration; federal mask mandate; vaccines scaling in high-GNI states
+United States,431,548,1,3,Spring/summer reopening; most states fully open by Jun 2021
+United States,549,700,1,4,Delta wave; CDC mask guidance but no mandates; state variation
+#
+# --- INDONESIA ---
+Indonesia,80,152,2,1,Large Scale Social Restrictions (PSBB) Jakarta Apr 10; other cities follow
+Indonesia,153,245,1,1,Gradual PSBB relaxation Jun-Aug 2020
+Indonesia,246,366,2,2,Jakarta reimposed PSBB Sep 2020; second wave Dec 2020
+Indonesia,367,520,2,3,PPKM (Activity Restriction) Jan-May 2021
+Indonesia,521,600,3,4,PPKM Darurat - Emergency (Jul-Aug 2021) during Delta peak
+Indonesia,601,700,2,4,PPKM Level 3-4 reduction Sep-Oct 2021
+#
+# --- PAKISTAN ---
+Pakistan,78,130,2,1,Nationwide lockdown Mar 22 - May 9, 2020 (provincial variation)
+Pakistan,131,245,1,1,Smart lockdown strategy Jun-Aug 2020
+Pakistan,246,310,2,2,Second wave Nov 2020; smart lockdowns
+Pakistan,311,450,2,2,Ongoing smart lockdowns; third wave Mar 2021
+Pakistan,451,548,1,3,Fourth wave easing Jun 2021
+Pakistan,549,700,1,4,Relatively open despite Delta; low official numbers
+#
+# --- BRAZIL ---
+Brazil,78,122,1,1,Federal government resisted lockdowns; state-level (Sao Paulo, Rio) measures
+Brazil,80,152,2,1,Sao Paulo state emergency; most state capitals moderate lockdown
+Brazil,153,245,1,1,Mixed relaxation; Bolsonaro opposed restrictions; high community spread
+Brazil,246,366,1,2,Second wave with no national lockdown; state-level moderate restrictions
+Brazil,367,461,2,3,Severe third wave Mar-Apr 2021 (Gamma variant); some states locked down
+Brazil,462,600,1,3,Gradual reopening; Delta less severe than Gamma wave in Brazil
+Brazil,601,700,1,4,Mostly open; high natural immunity after severe waves
+#
+# --- NIGERIA ---
+Nigeria,80,107,3,1,FCT + Lagos + Ogun lockdown Mar 30 - May 4, 2020
+Nigeria,108,180,2,1,Eased May 2020; phased reopening
+Nigeria,181,366,1,1,Mostly open with social distancing; low reported cases
+Nigeria,367,700,1,2,Limited restrictions; vaccine rollout very slow; low official numbers
+#
+# --- BANGLADESH ---
+Bangladesh,76,130,3,1,General Holiday (complete shutdown) Mar 26 - May 30, 2020
+Bangladesh,131,213,2,1,Limited lockdown Jun-Jul 2020
+Bangladesh,214,305,1,1,Mostly open with low compliance
+Bangladesh,306,366,1,2,Second wave rising but limited restrictions
+Bangladesh,367,461,2,3,Second wave lockdown measures Mar-Apr 2021
+Bangladesh,462,520,3,4,Strict lockdown during Delta wave (Apr-Aug 2021): Day 461-517
+Bangladesh,521,600,2,4,Gradual unlock Aug-Sep 2021
+Bangladesh,601,700,1,4,Mostly open
+#
+# --- RUSSIAN FEDERATION ---
+Russian Federation,76,118,2,1,Non-working period Mar 30 - May 11, 2020; Moscow lockdown Apr 15
+Russian Federation,119,245,1,1,Phased regional reopening Jun-Aug 2020
+Russian Federation,246,310,2,2,Second wave Oct-Nov 2020; QR codes Moscow
+Russian Federation,311,450,1,2,Lighter restrictions winter 2020-21; Sputnik V rolling out
+Russian Federation,451,548,1,3,Spring 2021 relatively open despite vaccine rollout
+Russian Federation,549,700,2,4,Delta wave Jun-Nov 2021; regional lockdowns; compulsory vaccination decrees
+#
+# --- ETHIOPIA ---
+Ethiopia,83,122,2,1,State of Emergency Apr 8 - Sep 2020
+Ethiopia,123,245,1,1,SoE ended Sep 2020; mostly open
+Ethiopia,246,700,1,2,Minimal national restrictions; health system pressures not widely reported
+#
+# --- MEXICO ---
+Mexico,78,122,2,1,Phase 3 lockdown: non-essential businesses closed Apr 23
+Mexico,123,245,1,1,New Normal from Jun 1; traffic light system; regional variation
+Mexico,246,366,1,2,Second wave Dec 2020; red alert in several states
+Mexico,367,461,2,3,Third wave Mar 2021; red alert expanding
+Mexico,462,600,1,3,Gradual easing Jun-Sep 2021
+Mexico,601,700,1,4,Mostly open; Delta wave managed without strict lockdowns
+#
+# --- JAPAN ---
+Japan,98,146,2,1,State of Emergency (SoE) Apr 7 - May 25, 2020 (soft lockdown)
+Japan,147,250,1,1,Careful reopening Jun-Sep 2020
+Japan,251,310,1,2,Second wave; no lockdown but strong guidance
+Japan,311,370,2,2,Second SoE Greater Tokyo Jan 7, 2021 - Mar 21, 2021
+Japan,371,480,2,3,Third SoE Osaka; extended Tokyo Apr 25 - Jun 20, 2021
+Japan,481,566,3,4,Fourth SoE Tokyo for Olympics (Jul 12 - Sep 30, 2021)
+Japan,567,700,1,4,SoE lifted Oct 2021; cautious reopening
+#
+# --- PHILIPPINES ---
+Philippines,72,120,3,1,Enhanced Community Quarantine (lockdown) Mar 17 - May 15
+Philippines,121,214,2,1,General Community Quarantine (GCQ) Jun-Jul 2020
+Philippines,215,310,2,2,NCR Metro Manila GCQ ongoing with variation
+Philippines,311,366,2,2,Metro Manila MECQ Dec 2020
+Philippines,367,461,2,3,NCR bubble restrictions Jan-Mar 2021
+Philippines,462,520,3,4,NCR+ Enhanced ECQ (Delta wave risk) Mar-May 2021
+Philippines,521,700,2,4,Alert Level System (4/5) NCR; significant restrictions
+#
+# --- EGYPT ---
+Egypt,78,140,2,1,Partial curfew and closures; tourism closed Mar 15
+Egypt,141,245,1,1,Curfew lifted Jun 2020; phased reopening
+Egypt,246,366,1,2,Second wave Nov-Dec 2020; limited restrictions
+Egypt,367,700,1,3,Mostly open; limited vaccine coverage
+#
+# --- DEMOCRATIC REPUBLIC OF CONGO ---
+Democratic Republic of the Congo,76,120,2,1,State of Emergency Mar 24 - Jul 21, 2020; Kinshasa lockdown
+Democratic Republic of the Congo,121,700,1,1,Mostly open; very limited testing/reporting
+#
+# --- GERMANY ---
+Germany,76,115,3,1,Contact restrictions Mar 22 - May 6, 2020 (Kontaktverbot)
+Germany,116,183,1,1,Phased reopening May-Jun 2020; shops, schools
+Germany,184,270,1,2,Summer open; cautious
+Germany,271,310,2,2,Second wave Nov: partial lockdown (Beherbergungsverbot)
+Germany,311,362,3,2,Hard lockdown Dec 16, 2020 - Feb 28, 2021
+Germany,363,445,2,3,Third wave discussions; varied state restrictions Mar 2021
+Germany,446,548,1,3,Vaccination ramp-up; restrictions gradually easing Apr-Jun 2021
+Germany,549,700,1,4,Open summer 2021; 2G/3G rules for events from Sep
+#
+# --- UNITED KINGDOM ---
+United Kingdom,83,130,3,1,Stay-at-home order Mar 23 - May 11, 2020
+United Kingdom,131,183,1,1,Phased reopening May-Jun 2020; shops Jul 4
+United Kingdom,184,270,1,2,Summer; local restrictions in Leicester, etc.
+United Kingdom,271,307,2,2,Three-tier system Oct 14; Scotland circuit breaker
+United Kingdom,307,332,3,2,Second lockdown Nov 5 - Dec 2, 2020 (England)
+United Kingdom,332,366,2,2,Tier 4 Dec 19; London effectively locked
+United Kingdom,367,426,3,3,Third lockdown Jan 5 - Mar 29, 2021
+United Kingdom,427,468,2,3,Step 2: Outdoor hospitality; non-essential retail Apr 12
+United Kingdom,469,538,1,3,Step 3: Indoor hospitality May 17; further easing
+United Kingdom,566,700,1,4,Freedom Day Jul 19 2021; all legal limits removed; Plan B later (not in period)
+#
+# --- FRANCE ---
+France,75,132,3,1,National lockdown Mar 17 - May 11, 2020
+France,133,197,1,1,Phased reopening May-Jun 2020
+France,198,303,1,2,Summer open; curfews some cities Sep
+France,303,335,3,2,Second lockdown Oct 30 - Nov 28, 2020
+France,335,366,2,2,Tier system Dec 2020; curfew 20h
+France,367,430,2,3,Curfew 18h Jan 2021; third lockdown Hauts-de-France Feb
+France,461,489,3,3,Third national lockdown Apr 3 - May 3, 2021
+France,490,538,2,3,Gradual reopening May - Jun 2021; curfew ended Jun 20
+France,539,700,1,4,Health pass required; mostly open Jul 2021 onward
+#
+# --- ITALY ---
+Italy,69,155,3,1,National lockdown Mar 10 - May 18, 2020 (Europe's first)
+Italy,156,197,1,1,Phase 2 reopening May 18 - Jun 3
+Italy,198,245,1,2,Summer 2020; beach holidays; masks required
+Italy,246,307,2,2,DPCM restrictions Oct 2020; Red/Orange/Yellow zones
+Italy,307,362,3,2,National Red zone restrictions Nov 6 - Dec 2020
+Italy,363,430,3,3,Red zones Apr 2021; schools closed
+Italy,431,548,2,3,Gradual reopening May-Jun 2021
+Italy,549,700,1,4,Green Pass system; mostly open
+#
+# --- SPAIN ---
+Spain,74,120,3,1,State of Alarm Mar 14 - Jun 21, 2020 (national lockdown, very strict)
+Spain,121,197,1,1,Phase 0-3 deescalada May-Jun 2020
+Spain,198,285,1,2,Regional AUTONOMias with variation; summer open
+Spain,285,310,2,2,State of Alarm Oct 25, regional curfews; Madrid/Barcelona
+Spain,311,366,2,2,State of Alarm extended; regional curfews through Dec 2020
+Spain,367,430,1,3,State of Alarm ended May 9; regional curfews varied
+Spain,431,548,1,3,Gradual reopening; tourism resumes Jun 2021
+Spain,549,700,1,4,Mostly open; ID Verde passport
+#
+# --- UKRAINE ---
+Ukraine,76,118,2,1,Quarantine Mar 12 - May 22, 2020
+Ukraine,119,260,1,1,Adaptive quarantine zones Jun-Sep 2020
+Ukraine,261,310,2,2,Second wave Nov 2020; Orange/Red quarantine zones
+Ukraine,311,366,2,2,Strictest Dec-Jan 2021; weekend lockdowns
+Ukraine,367,461,2,3,Red quarantine extended; third wave Mar 2021
+Ukraine,462,700,1,3,Easing spring/summer 2021; Delta wave Sep 2021 with certificate system
+#
+# --- COLOMBIA ---
+Colombia,78,130,3,1,Mandatory isolation Mar 25 - May 28, 2020
+Colombia,131,245,2,1,Gradual reopening Jun-Aug 2020; Bogota remains stricter
+Colombia,246,366,2,2,Second wave Oct-Dec 2020; Cali, Bogota restrictions
+Colombia,367,461,3,3,Third wave Jan-Apr 2021; strict Bogota lockdown
+Colombia,462,548,2,3,Gradual easing May-Jun 2021
+Colombia,549,700,1,4,Mostly open Jul-Dec 2021
+#
+# --- ARGENTINA ---
+Argentina,81,150,3,1,ASPO (mandatory quarantine) Mar 20 - Sep 2020; one of world's longest
+Argentina,151,245,2,1,DISPO (social distancing) Jul-Sep 2020
+Argentina,246,366,2,2,Second wave restrictions Oct-Dec 2020
+Argentina,367,450,3,3,Severe third wave Jan-Apr 2021; strict Buenos Aires ASPO
+Argentina,451,548,2,3,Gradual easing May-Jun 2021
+Argentina,549,700,1,4,Mostly open Jul-Dec 2021; health certificate system
+#
+# --- CANADA ---
+Canada,77,140,2,1,Provincial stay-at-home orders Mar-May 2020 (BC, Ontario, Quebec)
+Canada,141,245,1,1,Phased reopening Jun-Aug 2020
+Canada,246,310,2,2,Second wave Oct 2020; Toronto, Ottawa, Quebec City restrictions
+Canada,311,366,3,2,Grey-Lockdown Ontario Dec 2020 - Feb 2021; Quebec curfew Jan
+Canada,367,461,2,3,Third wave; Ontario Stay-at-Home Order Apr 7 2021
+Canada,462,548,1,3,Gradual reopening Jun 2021; provinces at different stages
+Canada,549,700,1,4,Mostly open summer 2021; vaccine passport system Sep
+#
+# --- SAUDI ARABIA ---
+Saudi Arabia,73,117,3,1,Nationwide curfew Mar 23 - Apr 30, 2020; Mecca closed
+Saudi Arabia,118,183,2,1,Gradual lifting; Eid curfew, Mecca restriction
+Saudi Arabia,184,270,1,2,Hajj restricted; internal travel
+Saudi Arabia,271,366,1,2,Limited restrictions; cases rising; shops/venues open
+Saudi Arabia,367,548,1,3,Vaccination rollout; limited NPIs
+Saudi Arabia,549,700,1,4,Mostly open; lifted remaining measures Jun 2021
+#
+# --- AUSTRALIA ---
+Australia,83,135,3,1,Stage 3 restrictions Mar 23 - May 14, 2020
+Australia,136,183,1,1,Stage 2 relaxation May 2020; state by state
+Australia,184,302,3,2,Victoria Stage 4 lockdown (Melbourne) Jul 2 - Oct 28, 2020
+Australia,303,366,1,2,Most states open; Victoria recovering
+Australia,367,461,1,3,Aggressive elimination; border closures; spot lockdowns
+Australia,462,540,3,4,NSW, VIC, ACT locked down (Delta, snap lockdowns Jun-Sep 2021)
+Australia,541,700,1,4,Phased reopening tied to 80% vaccination; Oct-Dec 2021
+#
+# --- KENYA ---
+Kenya,76,122,2,1,Curfew Mar 27 - Jul 2020; cessation of movement Nairobi, Mombasa
+Kenya,123,245,1,1,Partial curfew maintained Jun-Aug 2020
+Kenya,246,305,2,2,Second wave curfew Oct 2020; Nairobi containment zone
+Kenya,306,366,2,2,Third wave approaching; curfew maintained Dec 2020
+Kenya,367,461,2,3,Third wave Apr 2021; lockdown Nairobi and surrounding counties
+Kenya,462,700,1,3,Easing May 2021; mostly open with curfew ending
+#
+# --- PERU ---
+Peru,75,155,3,1,State of Emergency Mar 15 - Jun 30, 2020; very strict, one of strictest globally
+Peru,156,245,2,1,Gradual reopening Jul-Aug 2020
+Peru,246,370,3,2,Second wave Nov 2020 - Jan 2021; State of Emergency reimposed
+Peru,371,450,3,3,Severe third wave Jan-Apr 2021; P.1 (Gamma) dominant; overwhelmed ICUs
+Peru,451,548,2,3,Gradual easing May-Jun 2021
+Peru,549,700,1,4,Alert levels system; mostly open Jul-Dec 2021
+#
+# --- SOUTH AFRICA ---
+South Africa,86,115,3,1,Level 5 lockdown Mar 27 - Apr 30, 2020 (one of world's strictest)
+South Africa,116,151,2,1,Level 4 May 1 - Jun 1, 2020
+South Africa,152,183,1,1,Level 3 Jun 1 - Aug 17, 2020
+South Africa,184,213,2,2,Level 3 reimposed Aug 18; second wave concerns
+South Africa,214,305,1,2,Level 1 Sep 2020; alcohol ban lifted
+South Africa,306,366,3,2,Second wave Level 3 Dec 29, 2020 - Feb 28, 2021 (Beta variant)
+South Africa,367,461,2,3,Adjusted Level 3 with curfew Mar 2021
+South Africa,462,520,3,4,Third wave Delta: Level 4 Jun 28 - Aug 25, 2021
+South Africa,521,700,1,4,Level 2 Sep 2021; Omicron detected Nov 26 (end of period)
+#
+# --- IRAN ---
+Iran,55,120,2,1,Social distancing measures Feb 22; Nawruz travel ban; businesses closed
+Iran,121,213,1,1,Gradual reopening Apr-Jul 2020; Eid closures
+Iran,214,270,2,2,Second wave restrictions Jul-Aug 2020; offices closed
+Iran,271,310,3,2,Third wave; strict closures Nov 2020; Eid-e-Norooz ban
+Iran,311,430,2,3,Fourth wave; targeted closures Mar 2021
+Iran,431,548,2,3,Fifth wave Delta May-Jun 2021
+Iran,549,700,2,4,Sixth wave Delta; partial closures Aug-Sep 2021
+#
+# --- THAILAND ---
+Thailand,72,130,3,1,State of Emergency Mar 26 - Jun 30, 2020; businesses closed
+Thailand,131,197,2,1,Easing Jun-Jul 2020; tourism bubble plans
+Thailand,198,305,1,2,Low cases Aug-Nov 2020; mostly open
+Thailand,306,366,2,2,Second wave Dec 2020 (Samut Sakhon cluster); targeted lockdowns
+Thailand,367,430,2,3,Third wave Apr 2021; Songkran gathering ban
+Thailand,431,548,3,4,Strict measures Jun 2021; Bangkok red zone; curfew 21:00
+Thailand,549,700,2,4,Easing Sep 2021; sandbox tourism programs
+#
+# --- MALAYSIA ---
+Malaysia,75,118,3,1,MCO (Movement Control Order) Mar 18 - May 3, 2020
+Malaysia,119,183,1,1,CMCO (Conditional) May 4 - Jun 9; RMCO Jun 10
+Malaysia,184,300,1,2,Mostly open; cluster outbreaks
+Malaysia,301,366,2,2,CMCO Sabah, Selangor, KL Oct 2020; PKPB Dec 2020
+Malaysia,367,430,3,3,MCO 2.0 Jan 11 - Feb 28, 2021
+Malaysia,431,490,2,3,PKPP/MCO 3.0 May 2021
+Malaysia,491,580,3,4,Full Lockdown (NRP Phase 1) Jun 1 - Jul 2021; full MCO
+Malaysia,581,700,2,4,NRP Phase 2-4 Aug-Dec 2021; cautious reopening
+#
+# --- TANZANIA ---
+Tanzania,80,120,1,1,Limited measures; President Magufuli denied pandemic; schools closed briefly
+Tanzania,121,700,0,1,Essentially no restrictions; govt denied pandemic severity
+#
+# --- VIETNAM ---
+Vietnam,72,100,3,1,Social distancing Apr 1-22; contact tracing quarantine
+Vietnam,101,152,1,1,Controlled reopening with strict quarantine
+Vietnam,153,300,1,1,Near-elimination strategy; localized lockdowns
+Vietnam,301,366,1,2,Community spread Da Nang Jul 2020; lockdown Da Nang
+Vietnam,367,461,1,3,Mostly controlled with contact tracing
+Vietnam,462,580,3,4,Ho Chi Minh City strict lockdown Jun-Sep 2021 (Delta outbreak)
+Vietnam,581,700,2,4,Safe-adaptive reopening Oct 2021 after vaccination threshold
+#
+# --- REPUBLIC OF KOREA ---
+Republic of Korea,60,82,2,1,Social distancing Feb 29 - Apr 2020; no hard lockdown
+Republic of Korea,83,213,1,1,Daily testing + contact trace strategy; low restrictions
+Republic of Korea,214,260,2,2,Seoul distancing level 2.5 Aug-Sep 2020 (after Sarang church cluster)
+Republic of Korea,261,366,2,2,Level 2.5 Dec 2020 - Jan 2021; 5-person gathering ban; curfew
+Republic of Korea,367,461,2,3,Level 2 with gathering limit 4; capital region level 2.5
+Republic of Korea,462,548,2,3,Gyeongbukdo surge; capital region restrictions
+Republic of Korea,549,700,2,4,Delta wave; Level 4 capital region Aug-Oct 2021 (gathering limit 2)
+#
+# --- POLAND ---
+Poland,74,120,3,1,Lockdown Mar 20 - May 20, 2020; mandatory masks, business closure
+Poland,121,270,1,1,Gradual reopening Jun-Sep 2020
+Poland,271,310,2,2,Yellow/Red zones Oct 2020; pubs, gyms, schools closed
+Poland,311,365,3,2,Second lockdown Nov 7 - Jan 2021
+Poland,366,430,2,3,Third wave restrictions Mar-Apr 2021
+Poland,431,548,1,3,Gradual easing May-Jun 2021
+Poland,549,700,1,4,Mostly open; fourth wave rising end of period
+#
+# --- NEW ZEALAND ---
+New Zealand,86,119,3,1,Alert Level 4 (full lockdown) Mar 26 - Apr 28, 2020
+New Zealand,119,135,2,1,Alert Level 3 Apr 28 - May 13, 2020
+New Zealand,136,183,1,1,Alert Level 2 May 14; Level 1 Jun 8
+New Zealand,184,700,1,2,Elimination strategy with brief localized lockdowns (Auckland Aug 2020, Feb 2021); otherwise mostly open
+#
+# --- CHILE ---
+Chile,78,122,2,1,State of Emergency Mar 18; total quarantine sectors Apr 26
+Chile,123,213,1,1,Stepwise reopening from Jul 2020 (por fases)
+Chile,214,270,2,2,Rollback some regions Sep-Oct 2020
+Chile,271,366,3,2,Quarantine Santiago metro Nov 2020 - Jan 2021; nationwide weekend curfew
+Chile,367,430,2,3,Sanitary curfew maintained; rollout in progress
+Chile,431,548,1,3,Phased reopening May-Jun 2021; vaccination high
+Chile,549,700,1,4,Mostly open; fourth wave manageable with high vaccination
+#
+# --- SWEDEN ---
+Sweden,78,120,1,1,Voluntary measures; no hard lockdown; schools K-9 open
+Sweden,121,260,1,1,Social distancing guidance; restaurants seated only
+Sweden,261,310,2,2,Second wave; temporary law allowing closure of venues Dec 2020
+Sweden,311,366,2,2,Temporary COVID law; bars at 8pm close; gatherings of 8 max
+Sweden,367,461,1,3,Reopening earlier than rest of Europe; vaccination helping
+Sweden,462,700,1,4,Open with passes for large venues; largely normal
+#
+# --- NETHERLANDS ---
+Netherlands,80,120,2,1,Intelligent lockdown Mar 23 - Jun 1, 2020; schools closed
+Netherlands,121,183,1,1,Careful reopening Jun-Jul 2020
+Netherlands,184,270,1,2,Summer semi-open; facemasks required Aug
+Netherlands,271,310,2,2,Partial lockdown Oct 14; evening curfew Jan 2021
+Netherlands,311,366,3,2,Hard lockdown Dec 15 2020 - Apr 28 2021
+Netherlands,367,430,2,3,Easing Apr 28; retail reopened; terraces Jun
+Netherlands,431,548,1,3,Full reopening Jun 26
+Netherlands,549,700,2,4,Back to lockdown Nov 2021 (out of period/Omicron beginning)
+#
+# --- BELGIUM ---
+Belgium,77,114,3,1,Lockdown Mar 18 - May 11, 2020
+Belgium,115,183,1,1,Phased reopening Jun 2020
+Belgium,184,270,1,2,Summer open; facemasks mandatory
+Belgium,271,310,2,2,Second wave: curfews, bars closed Oct 2020
+Belgium,311,366,3,2,Second lockdown; tough measures through Dec 2020
+Belgium,367,461,2,3,Third wave Apr 2021; non-essential shops closed; curfew
+Belgium,462,548,1,3,Gradual easing May-Jun 2021
+Belgium,549,700,1,4,COVID Safe Ticket; mostly normal activities
+#
+# --- TURKEY ---
+Turkey,78,115,2,1,Weekend curfews Apr; 65+ and 20- stay-at-home; mandatory masks
+Turkey,116,183,1,1,Gradual reopening May-Jun 2020
+Turkey,184,270,1,2,Summer season; masks mandatory outdoors
+Turkey,271,310,2,2,Curfew weekends Oct-Nov 2020; cafes/restaurants closed evenings
+Turkey,311,366,3,2,Full weekend lockdowns Nov 20 2020 - Apr 29 2021; full lockdown Apr 29
+Turkey,367,427,3,3,Full lockdown Apr 29 - May 17, 2021
+Turkey,428,548,1,3,Gradual reopening May 2021
+Turkey,549,700,1,4,Mostly open; HES code system; Delta manageable
+#
+# --- IRAQ ---
+Iraq,78,130,3,1,Curfew Mar 17; full curfew Apr 2020
+Iraq,131,213,1,1,Phased reopening Jun-Jul 2020
+Iraq,214,305,2,2,Second wave Sep-Nov 2020; curfews reimposed
+Iraq,306,461,2,3,Ongoing restrictions; Muharram gathering bans; second wave lingering
+Iraq,462,700,1,3,Mostly open; Delta wave with limited restrictions
+#
+# --- GHANA ---
+Ghana,78,109,3,1,Lockdown Accra, Kumasi Mar 30 - Apr 20, 2020
+Ghana,110,213,1,1,Restrictions lifted Apr 20; mandatory masks
+Ghana,214,700,1,2,Mostly open with social distancing guidelines; cases managed
+#
+# --- MOZAMBIQUE ---
+Mozambique,78,122,2,1,State of Emergency Apr 1 - Jul 31, 2020; businesses closed
+Mozambique,123,366,1,1,Modest restrictions; limited enforcement
+Mozambique,367,700,1,2,Mostly open; limited healthcare reporting
+#
+# --- ANGOLA ---
+Angola,76,120,2,1,State of Emergency Mar 27 - Apr 26, 2020; curfew
+Angola,121,213,1,1,Public Calamity May 2020
+Angola,214,700,1,2,Calamity maintained with reduced restrictions
+#
+# --- CAMEROON ---
+Cameroon,76,120,2,1,Measures Mar 18; bars/restaurants closed Apr 6
+Cameroon,121,700,1,2,Progressive ease with masks/gathering limits
+#
+# --- MADAGASCAR ---
+Madagascar,78,120,3,1,Total confinement Mar 23 - Apr 2020; very strict
+Madagascar,121,213,2,1,Easing with mandatory masks
+Madagascar,214,700,1,2,Mostly open; limited enforcement capacity
+#
+# --- CÔTE D'IVOIRE ---
+Côte d'Ivoire,78,120,2,1,Partial lockdown Mar 23; curfew; borders closed
+Côte d'Ivoire,121,700,1,2,Easing May 2020; masks mandatory
+#
+# --- NIGER ---
+Niger,78,120,2,1,State of Emergency Mar 27; curfew; gatherings banned
+Niger,121,700,1,2,Easing Jun 2020; limited restrictions
+#
+# --- ZIMBABWE ---
+Zimbabwe,78,120,3,1,Lockdown Mar 30 - Jun 2020; very strict
+Zimbabwe,121,213,2,1,Phase 2 easing
+Zimbabwe,214,305,1,2,Level 2 open with precautions
+Zimbabwe,306,370,3,2,Second wave Level 4 lockdown Dec 31, 2020 - Feb 2021
+Zimbabwe,371,461,2,3,Level 2 Feb-Apr 2021
+Zimbabwe,462,548,3,4,Level 4 lockdown Jun-Jul 2021 (Delta wave)
+Zimbabwe,549,700,2,4,Level 2 Aug-Dec 2021
+#
+# --- ZAMBIA ---
+Zambia,78,120,2,1,Lockdown measures Mar 20; gatherings banned
+Zambia,121,213,1,1,Easing Jun-Jul 2020
+Zambia,214,305,1,2,Mostly open; cases underreported
+Zambia,306,366,2,2,Second wave Dec 2020
+Zambia,367,700,1,3,Easing Jan 2021; mostly open
+#
+# --- SOMALIA ---
+Somalia,78,120,2,1,Curfew; closures Mar 2020
+Somalia,121,700,1,2,Limited formal restrictions; humanitarian crisis context
+#
+# --- SENEGAL ---
+Senegal,78,120,2,1,State of Emergency Mar 23; curfew; gatherings banned
+Senegal,121,213,1,1,Easing Jun 2020
+Senegal,214,700,1,2,Limited restrictions ongoing; mostly open
+#
+# --- MALI ---
+Mali,78,120,2,1,State of Emergency Mar 25; curfew
+Mali,121,700,1,2,Mostly open with limited enforcement
+#
+# --- BURKINA FASO ---
+Burkina Faso,78,120,2,1,State of Emergency Mar 20
+Burkina Faso,121,700,1,2,Easing; limited capacity
+#
+# --- SUDAN ---
+Sudan,78,120,2,1,State of Emergency Apr 2020; curfew; closures
+Sudan,121,700,1,2,Mostly open; limited enforcement
+#
+# --- KAZAKHSTAN ---
+Kazakhstan,75,118,3,1,State of Emergency Mar 15 - May 11, 2020
+Kazakhstan,119,213,1,1,Phased reopening Jun-Jul 2020
+Kazakhstan,214,305,2,2,Second wave Sep-Nov 2020
+Kazakhstan,306,366,2,2,Quarantine restrictions Dec 2020 - Jan 2021
+Kazakhstan,367,548,1,3,Ongoing moderate restrictions; vaccine rollout
+Kazakhstan,549,700,1,4,Mostly open; Delta wave limited restrictions
+#
+# --- UZBEKISTAN ---
+Uzbekistan,74,118,2,1,Quarantine Mar 16 - Apr 2020
+Uzbekistan,119,213,1,1,Phased reopening
+Uzbekistan,214,700,1,2,Mostly open with limited restrictions
+#
+# --- SAUDI ARABIA ---
+# Already listed above
+#
+# --- ISRAEL ---
+Israel,71,112,3,1,First lockdown Mar 17 - Apr 19, 2020
+Israel,113,183,1,1,Reopening Apr-Jun 2020
+Israel,184,247,2,2,Second lockdown Sep 18 - Oct 18, 2020 (Sukkot)
+Israel,248,290,1,2,Easing Oct 2020
+Israel,291,365,3,2,Third lockdown Dec 27 2020 - Feb 7 2021
+Israel,366,410,1,3,Rapid vaccination; green badge system Mar 2021
+Israel,411,700,1,4,Almost fully open Apr 2021 onward; world's first mass vaccine rollout; Green Pass
+#
+# --- PORTUGAL ---
+Portugal,71,120,3,1,State of Emergency Mar 19 - May 2, 2020
+Portugal,121,183,1,1,Three-phase deconfinement May-Jun 2020
+Portugal,184,270,2,2,Mandatory masks; local restrictions Aug-Sep 2020
+Portugal,271,310,2,2,Restrictions Oct-Nov 2020; curfew 23:00 in 121 councils
+Portugal,311,370,3,2,Second lockdown (Europe's worst death rate Jan 2021) Jan 15 - Mar 2021
+Portugal,371,461,1,3,Careful reopening plan Mar-May 2021
+Portugal,462,548,1,3,Phased reopening; green certificate Jun 2021
+Portugal,549,700,1,4,Mostly open Jul-Dec 2021
+#
+# --- ECUADOR ---
+Ecuador,73,130,3,1,State of Exception Mar 17; curfew; Guayaquil overwhelmed
+Ecuador,131,213,1,1,Phased reopening Jun-Jul 2020
+Ecuador,214,305,2,2,Second wave Nov 2020
+Ecuador,306,366,2,2,Traffic light system; Quito/Guayaquil restrictive
+Ecuador,367,548,2,3,Third wave; vaccination ramp-up slow
+Ecuador,549,700,1,4,Mostly open Jul-Dec 2021
+#
+# --- MYANMAR ---
+Myanmar,75,120,2,1,State of Emergency lockdowns Sep-Oct 2020 (second wave)
+Myanmar,121,305,1,2,Limited restrictions; cases rising
+Myanmar,306,366,3,2,Second wave Sep-Oct 2020 strict lockdown
+Myanmar,367,461,2,3,Military coup Feb 2021 disrupted COVID response; limited data
+Myanmar,462,700,2,4,Third wave Jun-Aug 2021; healthcare collapse (coup + Delta)
+#
+# --- CAMBODIA ---
+Cambodia,78,120,2,1,Preventive measures; business restrictions
+Cambodia,121,305,1,1,Mostly open; near-elimination early
+Cambodia,306,366,1,2,February 20 Community Event cluster Mar 2021
+Cambodia,367,490,2,3,Third wave; Phnom Penh lockdown Apr-Jun 2021
+Cambodia,491,700,1,4,Vaccination high in cities; easing
+#
+# --- NEPAL ---
+Nepal,80,140,3,1,Lockdown Mar 24 - Jul 21, 2020; extended multiple times
+Nepal,141,245,1,1,Easing Jul-Aug 2020
+Nepal,246,310,2,2,Second wave Oct-Nov 2020
+Nepal,311,366,2,2,Restrictions Dec 2020 - Jan 2021
+Nepal,367,461,2,3,Third wave Mar 2021; Kathmandu prohibitory order
+Nepal,461,520,3,4,Delta wave; prohibitory order Apr-Jun 2021
+Nepal,521,700,1,4,Easing Jul-Dec 2021
+#
+# --- SRI LANKA ---
+Sri Lanka,75,135,3,1,Curfew Mar 20 - May 11, 2020
+Sri Lanka,136,213,1,1,Phased reopening Jun-Jul 2020
+Sri Lanka,214,305,1,2,Mostly open; second wave Aug-Oct 2020
+Sri Lanka,306,366,3,2,Strict curfew Oct 2020 - Jan 2021 (second wave)
+Sri Lanka,367,461,2,3,Ongoing restrictions Mar 2021
+Sri Lanka,461,520,3,4,Curfew May-Jun 2021 (Delta); Colombo lockdown
+Sri Lanka,521,700,2,4,Easing Jul-Dec 2021
+#
+# --- TAIWAN ---
+Taiwan,15,90,1,1,Early border controls Jan 15; school postponement; no hard lockdown
+Taiwan,91,700,1,1,Aggressive contact trace + quarantine; near-elimination; brief May 2021 level 3 for Taipei
+#
+# --- SINGAPORE ---
+Singapore,72,134,2,1,Circuit Breaker (semi-lockdown) Apr 7 - Jun 1, 2020
+Singapore,135,213,1,1,Phase 1 and 2 reopening Jun-Aug 2020
+Singapore,214,366,1,2,Phase 3; steady state with SafeEntry + TraceTogether
+Singapore,367,461,1,3,Vaccination ramp-up; mostly open
+Singapore,462,548,2,4,Tighten Aug 2021 (Heightened Alert) due to Delta
+Singapore,549,700,1,4,Living with COVID; vaccine-differentiated measures
+#
+# --- HONG KONG ---
+Hong Kong,15,90,2,1,Early social distancing; no hard lockdown; voluntary compliance
+Hong Kong,91,213,2,1,Restriction on gatherings of 4; bars closed
+Hong Kong,214,305,2,2,Multiple restriction/relaxation cycles; bars closed
+Hong Kong,306,366,2,2,Social distancing extended Dec 2020 - Jan 2021
+Hong Kong,367,548,2,3,Ongoing restrictions; no bubble lounge Jul 2021
+Hong Kong,549,700,2,4,Ongoing strict social gathering limits; late vaccinations
+#
+# --- CUBA ---
+Cuba,75,120,2,1,Lockdown Mar 24; tourism halted; mandatory masks
+Cuba,121,213,1,1,Phased reopening Jun 2020
+Cuba,214,305,1,2,Mostly controlled; second wave Oct 2020
+Cuba,306,461,2,2,Restrictions reimposed; third wave Apr 2021
+Cuba,462,548,3,4,Severe Delta wave; rare protests Jul 2021; mass lockdowns
+Cuba,549,700,2,4,Vaccination ramp-up with Abdala; easing

@@ -1,0 +1,142 @@
+# =============================================================================
+# Real-World Calibrated COVID-19 Simulation Configuration
+# =============================================================================
+#
+# Parameters are calibrated against observed COVID-19 pandemic data
+# (January 2020 – December 2021).  Sources: WHO, CDC, Our World in Data,
+# Nature Medicine meta-analyses.
+#
+# Day 0 = 2019-12-31 (matches daily_vaccine_availability.csv)
+# Timeline:
+#   Day   1 – 365 : Pre-vaccine wave (Original strain, then Alpha)
+#   Day 366 – 548 : Vaccine rollout — rich-nation hoarding peak
+#   Day 549 – 731 : Delta wave; COVAX begins scaling
+#   Day 732+      : Omicron; more equitable (but still biased) distribution
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Epidemic parameters (Original-strain calibration)
+# ---------------------------------------------------------------------------
+
+# R0 = 2.5 (95% CI: 2.1–3.5) — pre-intervention Original strain.
+# (Source: Liu et al. 2020, J Travel Med; Zhao et al. 2020, Int J Infect Dis)
+basic_reproduction_number: 2.5
+
+# Serial interval ≈ 5.2 days; incubation ≈ 5.1 days
+# (Source: Lauer et al. 2020, Ann Intern Med)
+incubation_period: 5.2
+
+# Infectious period: 10 days consistent with WHO/CDC isolation guidance
+# (Source: He et al. 2020, Nat Med; CDC guidance)
+infectious_period: 10.0
+
+# Hospital stay for COVID-19 in general wards: ~10 days (range 7–14)
+# (Source: Rees et al. 2020, BMC Med)
+hospital_stay: 10.0
+
+# Overdispersion k ≈ 0.1 — COVID-19 is highly overdispersed (superspreading)
+# (Source: Endo et al. 2020, Wellcome Open Res)
+overdispersion_k: 0.1
+
+# ---------------------------------------------------------------------------
+# Healthcare capacity
+# ---------------------------------------------------------------------------
+
+# Global average: ~3 hospital beds per 1000 population
+# (Source: WHO Global Health Observatory 2020)
+hospital_beds_per_capita: 0.003
+
+# Mortality doubles when hospitals exceed capacity — observed in Italy (March 2020),
+# New York (April 2020), India (May 2021)
+# (Source: Ji et al. 2020, Lancet; Bhatt et al. 2020, Science)
+mortality_multiplier_over_capacity: 2.0
+
+# ---------------------------------------------------------------------------
+# Immunity waning
+# ---------------------------------------------------------------------------
+
+# Natural immunity half-life: ~180 days
+# (Source: Pozzetto et al. 2021, Nature; Levin et al. 2021, NEJM)
+natural_immunity_half_life: 180.0
+
+# mRNA vaccine immunity half-life: ~150 days before booster era
+# (Source: Levin et al. 2021, NEJM; Bar-On et al. 2021, NEJM)
+vaccine_immunity_half_life: 150.0
+
+# ---------------------------------------------------------------------------
+# Vaccination parameters (mRNA-style — Pfizer/Moderna dominant in early rollout)
+# ---------------------------------------------------------------------------
+
+# Pfizer: 21-day interval; Moderna: 28-day.  Use 21 as dominant early-rollout protocol.
+dose_interval: 21
+
+# Partial immunity kicks in ~14 days after dose 1 (Polack et al. 2020, NEJM)
+immunity_delay_dose1: 14
+
+# Full immunity ~7 days after dose 2
+immunity_delay_dose2: 7
+
+# Dose-1 efficacy: ~52% against symptomatic disease (95% CI 29.5–68.4%)
+# (Source: Polack et al. 2020, NEJM — interim analysis)
+efficacy_dose1: 0.52
+
+# Dose-2 efficacy: ~95% against original strain symptomatic disease
+# (Source: Polack et al. 2020, NEJM; Baden et al. 2021, NEJM)
+efficacy_dose2: 0.95
+
+# Max 0.5% of any country's population vaccinated per day (logistic ceiling)
+# Observed: Israel peaked at ~1.6% per day, but global LMIC average was <0.1%
+# 0.5% is a reasonable global cap balancing high- and low-capacity countries.
+max_daily_fraction: 0.005
+
+# ---------------------------------------------------------------------------
+# Simulation scope
+# ---------------------------------------------------------------------------
+
+# 730 days = exactly 2 years (2020-01-01 through 2021-12-31)
+# Covers Original → Alpha → Delta → early Omicron
+simulation_days: 730
+
+# Fixed seed for reproducibility
+random_seed: 2020
+
+# Seed infections: COVID-19 seeded in ALL countries by early 2020
+# WHO confirmed community spread in 114 countries by March 11, 2020 (Day ~71)
+# Start each country with 500 initial infected (conservative — some had many more)
+initial_infected_per_country: 500
+
+# ---------------------------------------------------------------------------
+# Variant system — real-world COVID-19 timeline
+# ---------------------------------------------------------------------------
+enable_variants: true
+
+# Variants (defined in src/models/variant_model.py DEFAULT_VARIANTS):
+#   Original  (Day   0):  R0×1.0,  escape 0%,  severity 1.0×, vax 1.0×
+#   Alpha     (Day 120):  R0×1.5,  escape 0%,  severity 1.1×, vax 0.95×
+#     ↳ B.1.1.7 — identified UK Sep 2020, dominant globally ~Apr 2021
+#   Delta     (Day 450):  R0×2.4,  escape 15%, severity 1.5×, vax 0.80×
+#     ↳ B.1.617.2 — identified India Oct 2020, globally dominant Jun 2021
+#   Omicron   (Day 700):  R0×4.0,  escape 40%, severity 0.6×, vax 0.55×
+#     ↳ B.1.1.529 — detected South Africa Nov 2021
+
+# ---------------------------------------------------------------------------
+# Analysis thresholds
+# ---------------------------------------------------------------------------
+
+# Herd immunity threshold is variant-dependent; 70% is a conservative baseline
+# for Original strain (HIT = 1 - 1/R0 ≈ 0.60 for R0=2.5; 70% adds margin).
+herd_immunity_threshold: 0.7
+
+# 50% of countries achieving their own herd immunity
+country_immunity_threshold: 0.5
+
+# ---------------------------------------------------------------------------
+# Legacy parameters (required by covid_vaccine_simulation_main.py)
+# ---------------------------------------------------------------------------
+lockdown_entry_threshold: 0.012
+lockdown_exit_threshold: 0.008
+lockdown_threshold: 0.012
+mortality_rate: 0.02
+recovery_rate: 0.07142857142857142
+vaccine_effectiveness: 0.95
+gdp_immunity_threshold: 0.7
