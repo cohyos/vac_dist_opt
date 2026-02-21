@@ -1,0 +1,11 @@
+Error occurred during analysis: name 'json' is not defined
+
+Partial Results:
+                  strategy  days_to_70_global  days_to_70_economic days_to_50_countries  total_deaths
+0  population_proportional                470                  469                 None      46312202
+1   large_population_first                470                  472                 None      46065333
+2   small_population_first                470                  466                 None      48232005
+3           high_gdp_first                470                  461                 None      46317761
+4            low_gdp_first                470                  483                 None      48081254
+5           high_gni_first                470                  422                 None      47380092
+6            low_gni_first                470                  491                 None      47903421
