@@ -1,13 +1,46 @@
-basic_reproduction_number: 2.1
-country_immunity_threshold: 0.5
-gdp_immunity_threshold: 0.7
-herd_immunity_threshold: 0.7
+# COVID-19 Vaccine Distribution Simulation Configuration
+# Enhanced SEIR+ model with age structure, variants, and per-country NPIs
+
+# === Epidemic parameters ===
+basic_reproduction_number: 2.5   # Base R0 (Original strain)
+incubation_period: 5.2           # Days (E -> I transition)
+infectious_period: 10.0          # Days (I -> R/H transition)
+hospital_stay: 10.0              # Days (H -> R/D transition)
+overdispersion_k: 0.1            # Negative binomial dispersion (lower = more superspreading)
+
+# === Healthcare capacity ===
+hospital_beds_per_capita: 0.003  # WHO global average
+mortality_multiplier_over_capacity: 2.0  # Death rate multiplier when hospitals full
+
+# === Immunity waning ===
+natural_immunity_half_life: 180.0   # Days until natural immunity halves
+vaccine_immunity_half_life: 150.0   # Days until vaccine immunity halves
+
+# === Vaccination parameters ===
+dose_interval: 21                # Days between dose 1 and dose 2
+immunity_delay_dose1: 14         # Days after dose 1 for partial immunity
+immunity_delay_dose2: 7          # Days after dose 2 for full immunity
+efficacy_dose1: 0.52             # Partial efficacy after 1 dose
+efficacy_dose2: 0.95             # Full efficacy after 2 doses
+max_daily_fraction: 0.005        # Max fraction of population vaccinated per day
+
+# === Simulation parameters ===
+simulation_days: 800
+random_seed: 42
 initial_infected_per_country: 100
+
+# === Variant system ===
+enable_variants: true            # Enable variant emergence timeline
+
+# === Analysis thresholds ===
+herd_immunity_threshold: 0.7     # For dynamic HIT comparison
+country_immunity_threshold: 0.5  # Fraction of countries needed
+
+# === Legacy parameters (kept for backward compatibility with old simulation) ===
 lockdown_entry_threshold: 0.012
 lockdown_exit_threshold: 0.008
 lockdown_threshold: 0.012
 mortality_rate: 0.02
 recovery_rate: 0.07142857142857142
-simulation_days: 800
-random_seed: 42
 vaccine_effectiveness: 0.95
+gdp_immunity_threshold: 0.7
