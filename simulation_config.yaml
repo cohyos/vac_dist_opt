@@ -9,4 +9,5 @@ lockdown_threshold: 0.012
 mortality_rate: 0.02
 recovery_rate: 0.07142857142857142
 simulation_days: 800
+random_seed: 42
 vaccine_effectiveness: 0.95

@@ -1,5 +1,6 @@
 """Statistical analysis module for vaccination strategy simulation results"""
 
+import json
 import pandas as pd
 import numpy as np
 from scipy import stats

@@ -1,0 +1,193 @@
+{
+    "baseline_strategy": "population_proportional",
+    "metric_comparisons": {
+        "days_to_70_global": {
+            "population_proportional": {
+                "value": 473.0,
+                "improvement": 0.0
+            },
+            "large_population_first": {
+                "value": 490.0,
+                "improvement": -3.5940803382663846
+            },
+            "small_population_first": {
+                "value": 491.0,
+                "improvement": -3.8054968287526427
+            },
+            "high_gdp_first": {
+                "value": 489.0,
+                "improvement": -3.382663847780127
+            },
+            "low_gdp_first": {
+                "value": 490.0,
+                "improvement": -3.5940803382663846
+            },
+            "high_gni_first": {
+                "value": 490.0,
+                "improvement": -3.5940803382663846
+            },
+            "low_gni_first": {
+                "value": 490.0,
+                "improvement": -3.5940803382663846
+            }
+        },
+        "days_to_70_economic": {
+            "population_proportional": {
+                "value": 471.0,
+                "improvement": 0.0
+            },
+            "large_population_first": {
+                "value": 488.0,
+                "improvement": -3.6093418259023355
+            },
+            "small_population_first": {
+                "value": 484.0,
+                "improvement": -2.7600849256900215
+            },
+            "high_gdp_first": {
+                "value": 475.0,
+                "improvement": -0.8492569002123143
+            },
+            "low_gdp_first": {
+                "value": 497.0,
+                "improvement": -5.520169851380043
+            },
+            "high_gni_first": {
+                "value": 464.0,
+                "improvement": 1.48619957537155
+            },
+            "low_gni_first": {
+                "value": 505.0,
+                "improvement": -7.218683651804671
+            }
+        },
+        "days_to_50_countries": {
+            "population_proportional": {
+                "value": 450.0,
+                "improvement": 0.0
+            },
+            "large_population_first": {
+                "value": 485.0,
+                "improvement": -7.777777777777778
+            },
+            "small_population_first": {
+                "value": 403.0,
+                "improvement": 10.444444444444445
+            },
+            "high_gdp_first": {
+                "value": 475.0,
+                "improvement": -5.555555555555555
+            },
+            "low_gdp_first": {
+                "value": 415.0,
+                "improvement": 7.777777777777778
+            },
+            "high_gni_first": {
+                "value": 435.0,
+                "improvement": 3.3333333333333335
+            },
+            "low_gni_first": {
+                "value": 438.0,
+                "improvement": 2.666666666666667
+            }
+        },
+        "total_deaths": {
+            "population_proportional": {
+                "value": 42515083.0,
+                "improvement": 0.0
+            },
+            "large_population_first": {
+                "value": 44512054.0,
+                "improvement": -4.697088325101
+            },
+            "small_population_first": {
+                "value": 46923241.0,
+                "improvement": -10.368456766272807
+            },
+            "high_gdp_first": {
+                "value": 45290458.0,
+                "improvement": -6.527977376875873
+            },
+            "low_gdp_first": {
+                "value": 47865515.0,
+                "improvement": -12.584785498360665
+            },
+            "high_gni_first": {
+                "value": 45838801.0,
+                "improvement": -7.817738471779532
+            },
+            "low_gni_first": {
+                "value": 46393177.0,
+                "improvement": -9.12168982476172
+            }
+        }
+    },
+    "rankings": {
+        "days_to_70_global": [
+            "population_proportional",
+            "high_gdp_first",
+            "large_population_first",
+            "low_gdp_first",
+            "low_gni_first",
+            "high_gni_first",
+            "small_population_first"
+        ],
+        "days_to_70_economic": [
+            "high_gni_first",
+            "population_proportional",
+            "high_gdp_first",
+            "small_population_first",
+            "large_population_first",
+            "low_gdp_first",
+            "low_gni_first"
+        ],
+        "days_to_50_countries": [
+            "small_population_first",
+            "low_gdp_first",
+            "high_gni_first",
+            "low_gni_first",
+            "population_proportional",
+            "high_gdp_first",
+            "large_population_first"
+        ],
+        "total_deaths": [
+            "population_proportional",
+            "large_population_first",
+            "high_gdp_first",
+            "high_gni_first",
+            "low_gni_first",
+            "small_population_first",
+            "low_gdp_first"
+        ]
+    },
+    "summary_statistics": {
+        "days_to_70_global": {
+            "mean": 487.57142857142856,
+            "median": 490.0,
+            "std": 6.451282633635548,
+            "min": 473.0,
+            "max": 491.0
+        },
+        "days_to_70_economic": {
+            "mean": 483.42857142857144,
+            "median": 484.0,
+            "std": 14.570027943889274,
+            "min": 464.0,
+            "max": 505.0
+        },
+        "days_to_50_countries": {
+            "mean": 443.0,
+            "median": 438.0,
+            "std": 29.748949561287034,
+            "min": 403.0,
+            "max": 485.0
+        },
+        "total_deaths": {
+            "mean": 45619761.28571428,
+            "median": 45838801.0,
+            "std": 1749433.3709763205,
+            "min": 42515083.0,
+            "max": 47865515.0
+        }
+    }
+}

@@ -3,6 +3,7 @@ Main simulation runner for COVID-19 vaccination strategy analysis
 Integrates configuration, analysis, and visualization components with improved error handling
 """
 
+import argparse
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
@@ -135,18 +136,34 @@ class VaccineDistributor:
         return VaccineDistributor._allocate_sequentially(sorted_countries, available_vaccines)
     
     @staticmethod
-    def _allocate_sequentially(sorted_countries: List[Tuple[str, Country]], 
-                             available_vaccines: int) -> Dict[str, int]:
+    def _allocate_sequentially(sorted_countries: List[Tuple[str, Country]],
+                             available_vaccines: int,
+                             daily_cap_fraction: float = 0.005) -> Dict[str, int]:
+        """Allocate vaccines sequentially with per-country daily absorption cap.
+
+        Each country can absorb at most daily_cap_fraction of its population per day,
+        preventing unrealistic scenarios where one large country absorbs all vaccines.
+        """
         allocations = {name: 0 for name, _ in sorted_countries}
-        remaining_vaccines = max(0, available_vaccines)  # Ensure non-negative
-        
-        for name, country in sorted_countries:
-            if remaining_vaccines <= 0:
-                break
-            needed = min(country.susceptible, remaining_vaccines)
-            allocations[name] = needed
-            remaining_vaccines -= needed
-        
+        remaining_vaccines = max(0, available_vaccines)
+
+        # Multiple passes to distribute remaining vaccines after caps
+        while remaining_vaccines > 0:
+            distributed_this_pass = 0
+            for name, country in sorted_countries:
+                if remaining_vaccines <= 0:
+                    break
+                max_daily = max(1, int(country.population * daily_cap_fraction))
+                already_allocated = allocations[name]
+                can_absorb = max(0, max_daily - already_allocated)
+                needed = min(country.susceptible - already_allocated, remaining_vaccines, can_absorb)
+                if needed > 0:
+                    allocations[name] += needed
+                    remaining_vaccines -= needed
+                    distributed_this_pass += needed
+            if distributed_this_pass == 0:
+                break  # No country can absorb more vaccines
+
         return allocations
 
 class GlobalSimulation:
@@ -161,33 +178,32 @@ class GlobalSimulation:
             'high_gni_first': VaccineDistributor.high_gni_first,
             'low_gni_first': VaccineDistributor.low_gni_first
         }
-        # Initialize lockdown controller
-        self.lockdown_controller = LockdownController(
-            entry_threshold=self.config.lockdown_threshold,
-            exit_threshold=self.config.lockdown_threshold * 0.8  # Exit at 80% of entry threshold
-        )
+        # Store per-strategy lockdown controllers for visualization
+        self.lockdown_controllers = {}
+        self.num_countries = 0
     
-    def _run_single_strategy(self, countries_data: pd.DataFrame, 
-                           vaccines_data: pd.DataFrame, 
+    def _run_single_strategy(self, countries_data: pd.DataFrame,
+                           vaccines_data: pd.DataFrame,
                            strategy_func, strategy_name: str) -> Tuple[Dict, List[Dict]]:
         try:
             countries = {
                 row['Country']: Country(
-                    row['Country'], row['Population'], row['GNI_per_capita'], 
+                    row['Country'], row['Population'], row['GNI_per_capita'],
                     self.config
                 )
                 for _, row in countries_data.iterrows()
             }
         except Exception as e:
             raise RuntimeError(f"Failed to initialize countries: {str(e)}")
-        
+
+        self.num_countries = len(countries)
         time_series = []
         simulation_days = min(self.config.simulation_days, len(vaccines_data))
-        
-        # Reset lockdown controller for new strategy run
-        self.lockdown_controller = LockdownController(
-            entry_threshold=self.config.lockdown_threshold,
-            exit_threshold=self.config.lockdown_threshold * 0.8
+
+        # Create a fresh lockdown controller for this strategy
+        lockdown_controller = LockdownController(
+            entry_threshold=self.config.lockdown_entry_threshold,
+            exit_threshold=self.config.lockdown_exit_threshold
         )
         
         for day in tqdm(range(simulation_days)):
@@ -203,7 +219,7 @@ class GlobalSimulation:
                 total_population = sum(c.population for c in countries.values())
                 total_infected = sum(c.infected for c in countries.values())
                 infection_rate = total_infected / total_population if total_population > 0 else 0
-                global_lockdown = self.lockdown_controller.update_lockdown_status(day, infection_rate)
+                global_lockdown = lockdown_controller.update_lockdown_status(day, infection_rate)
                 
                 # Update disease progression with lockdown status
                 for country in countries.values():
@@ -216,6 +232,9 @@ class GlobalSimulation:
                 print(f"Warning: Error on day {day}: {str(e)}")
                 continue
         
+        # Store this strategy's lockdown controller for visualization
+        self.lockdown_controllers[strategy_name] = lockdown_controller
+
         final_stats = self._analyze_strategy_results(time_series, strategy_name)
         return final_stats, time_series
 	    
@@ -232,9 +251,13 @@ class GlobalSimulation:
                 - DataFrame with results for each strategy
                 - List of time series dictionaries for visualization
         """
+        # Set random seed for reproducibility
+        if self.config.random_seed is not None:
+            np.random.seed(self.config.random_seed)
+
         results = []
         time_series_data = []
-        
+
         for strategy_key, strategy_func in self.strategy_mapping.items():
             print(f"\nRunning simulation with {strategy_key} strategy...")
             try:
@@ -272,14 +295,17 @@ class GlobalSimulation:
             economic_immunity = sum(c.get_immunity_percentage() * c.gdp 
                                   for c in countries.values()) / total_gdp
             
+            total_infected = sum(c.infected for c in countries.values())
+
             return {
                 'day': day,
                 'strategy': strategy,
                 'global_immunity_percentage': global_immunity,
                 'economic_immunity_percentage': economic_immunity,
-                'countries_with_immunity': sum(1 for c in countries.values() 
+                'countries_with_immunity': sum(1 for c in countries.values()
                                              if c.get_immunity_percentage() >= (self.config.herd_immunity_threshold * 100)),
-                'total_deaths': sum(c.deaths for c in countries.values())
+                'total_deaths': sum(c.deaths for c in countries.values()),
+                'infection_rate': (total_infected / total_population) * 100
             }
         except Exception as e:
             print(f"Warning: Error calculating global stats: {str(e)}")
@@ -289,7 +315,8 @@ class GlobalSimulation:
                 'global_immunity_percentage': 0,
                 'economic_immunity_percentage': 0,
                 'countries_with_immunity': 0,
-                'total_deaths': 0
+                'total_deaths': 0,
+                'infection_rate': 0
             }
     
     def _analyze_strategy_results(self, time_series: List[Dict], strategy: str) -> Dict:
@@ -298,7 +325,7 @@ class GlobalSimulation:
             df = pd.DataFrame(time_series)
             
             immunity_threshold = self.config.herd_immunity_threshold * 100
-            country_threshold = self.config.country_immunity_threshold * len(time_series)
+            country_threshold = self.config.country_immunity_threshold * self.num_countries
             
             days_to_70_global = None
             if (df['global_immunity_percentage'] >= immunity_threshold).any():
@@ -362,20 +389,30 @@ def run_complete_simulation(config_path: str,
         
         # Create visualizations
         print("Generating visualizations...")
-        visualizer = VaccinationVisualizer(results, time_series, simulation.lockdown_controller)
+        visualizer = VaccinationVisualizer(
+            results, time_series, simulation.lockdown_controllers, output_dir
+        )
         visualizer.export_all_visualizations()
-        
+
         print("\nSimulation completed successfully!")
         print(f"All results have been saved to: {output_dir}/")
-        
+
     except Exception as e:
         print(f"\nError during simulation: {str(e)}")
         raise
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='COVID-19 Vaccine Distribution Simulation')
+    parser.add_argument('--config', default='simulation_config.yaml', help='Path to config YAML')
+    parser.add_argument('--countries', default='data/world_countries_data.csv', help='Path to countries CSV')
+    parser.add_argument('--vaccines', default='data/daily_vaccine_availability.csv', help='Path to vaccines CSV')
+    parser.add_argument('--output-dir', default='results', help='Output directory')
+    parser.add_argument('--seed', type=int, default=None, help='Random seed for reproducibility')
+    args = parser.parse_args()
+
     run_complete_simulation(
-        config_path='simulation_config.yaml',
-        countries_path='world_countries_data.csv',
-        vaccines_path='daily_vaccine_availability.csv',
-        output_dir='results'
+        config_path=args.config,
+        countries_path=args.countries,
+        vaccines_path=args.vaccines,
+        output_dir=args.output_dir
     )

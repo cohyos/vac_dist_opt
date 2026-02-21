@@ -1,12 +1,16 @@
+"""Batch runner for COVID-19 vaccine distribution simulation."""
+
 import os
-print(os.getcwd())
-os.chdir("D:\\Users\yoshefch\Phd files\sim\dec24_cld_strg")
-print (os.getcwd())
+import sys
+
+# Ensure we're in the correct directory (script's location)
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 from vaccine_simulation_config import generate_default_config
 
-generate_default_config('simulation_config.yaml')
-
+# Generate default config if it doesn't exist
+if not os.path.exists('simulation_config.yaml'):
+    generate_default_config('simulation_config.yaml')
 
 from covid_vaccine_simulation_main import run_complete_simulation
 run_complete_simulation(

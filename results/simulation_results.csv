@@ -1,8 +1,8 @@
 strategy,days_to_70_global,days_to_70_economic,days_to_50_countries,total_deaths
-population_proportional,470,469,,46312202
-large_population_first,470,472,,46065333
-small_population_first,470,466,,48232005
-high_gdp_first,470,461,,46317761
-low_gdp_first,470,483,,48081254
-high_gni_first,470,422,,47380092
-low_gni_first,470,491,,47903421
+population_proportional,473,471,450,42515083
+large_population_first,490,488,485,44512054
+small_population_first,491,484,403,46923241
+high_gdp_first,489,475,475,45290458
+low_gdp_first,490,497,415,47865515
+high_gni_first,490,464,435,45838801
+low_gni_first,490,505,438,46393177
